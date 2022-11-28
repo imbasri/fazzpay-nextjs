@@ -10,7 +10,7 @@ import css from "../../styles/Pin.module.css";
 import Dashboard from "../../components/dashboard/Dashboard";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-
+import Layout from "../../components/Layout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -46,7 +46,6 @@ function Pin() {
          .then(
             (res) => (
                Cookies.remove("pin"),
-               Cookies.set("pin", getpin),
                toast.success(res.data.msg),
                setTimeout(() => {
                   router.push("/pin/success");
@@ -84,58 +83,60 @@ function Pin() {
 
    return (
       <>
-         <p className={css.title_phone}>FazzPay</p>
-         <div className={css.main_content}>
-            {/* Content Left */}
-            <Dashboard />
+         <Layout title="Pin">
+            <p className={css.title_phone}>FazzPay</p>
+            <div className={css.main_content}>
+               {/* Content Left */}
+               <Dashboard />
 
-            {/* Content Right */}
-            <div className={css.content_right}>
-               <div className={css.content_form}>
-                  <div className={css.phone_view}>
-                     <h2 className={css.title_bar_1_phone}>
-                        Create Security PIN
+               {/* Content Right */}
+               <div className={css.content_right}>
+                  <div className={css.content_form}>
+                     <div className={css.phone_view}>
+                        <h2 className={css.title_bar_1_phone}>
+                           Create Security PIN
+                        </h2>
+                        <p className={css.title_bar_2_phone}>
+                           Create a PIN that`s contain 6 digits number for
+                           security purpose in FazzPay.
+                        </p>
+                     </div>
+                     <h2 className={css.title_bar_1}>
+                        Secure Your Account, Your Wallet, and Your Data With 6
+                        Digits PIN That You Created Yourself.
                      </h2>
-                     <p className={css.title_bar_2_phone}>
-                        Create a PIN that`s contain 6 digits number for security
-                        purpose in FazzPay.
+                     <p className={css.title_bar_2}>
+                        Create 6 digits pin to secure all your money and your
+                        data in FazzPay app. Keep it secret and don`t tell
+                        anyone about your FazzPay account password and the PIN.
                      </p>
-                  </div>
-                  <h2 className={css.title_bar_1}>
-                     Secure Your Account, Your Wallet, and Your Data With 6
-                     Digits PIN That You Created Yourself.
-                  </h2>
-                  <p className={css.title_bar_2}>
-                     Create 6 digits pin to secure all your money and your data
-                     in FazzPay app. Keep it secret and don`t tell anyone about
-                     your FazzPay account password and the PIN.
-                  </p>
 
-                  <div className={css.pin}>
-                     <ReactCodeInput
-                        type="number"
-                        fields={6}
-                        pattern="/^-?\d+\.?\d*$/"
-                        onChange={valuePin}
-                        {...props}
-                     />
+                     <div className={css.pin}>
+                        <ReactCodeInput
+                           type="number"
+                           fields={6}
+                           pattern="/^-?\d+\.?\d*$/"
+                           onChange={valuePin}
+                           {...props}
+                        />
+                     </div>
+                     {/* Action */}
+                     <button className={css.confirm} onClick={click}>
+                        Confirm
+                     </button>
                   </div>
-                  {/* Action */}
-                  <button className={css.confirm} onClick={click}>
-                     Confirm
-                  </button>
                </div>
             </div>
-         </div>
-         <ToastContainer
-            position="top-center"
-            autoClose={2000}
-            hideProgressBar={false}
-            closeOnClick={true}
-            pauseOnHover={true}
-            draggable={true}
-            theme="light"
-         />
+            <ToastContainer
+               position="top-center"
+               autoClose={2000}
+               hideProgressBar={false}
+               closeOnClick={true}
+               pauseOnHover={true}
+               draggable={true}
+               theme="light"
+            />
+         </Layout>
       </>
    );
 }

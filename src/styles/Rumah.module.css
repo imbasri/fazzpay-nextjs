@@ -167,7 +167,6 @@
   justify-content: flex-end;
   margin-left: 20px;
   height: 100%;
-  width: 100%;
 }
 
 .border-grap {
@@ -554,6 +553,10 @@
 @media only screen and (max-width: 428px) {
   .content-all {
     height: 900px;
+  }
+
+  .text-price {
+    width: 108%;
   }
 
   .content-right {

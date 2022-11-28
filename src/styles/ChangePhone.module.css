@@ -55,7 +55,7 @@
   margin-left: 5%;
 }
 
-.inputNumber > input {
+.inputNumber>input {
   width: 50%;
   text-decoration: none;
   border: none;
@@ -67,7 +67,7 @@
   text-align: left;
 }
 
-.inputNumber > input:focus {
+.inputNumber>input:focus {
   outline: none;
 }
 
@@ -102,11 +102,12 @@
   font-size: 18px;
   line-height: 25px;
   color: #88888f;
+  cursor: pointer;
 }
 
 .btn:hover {
-    background-color: #6379F4;
-    color:white;
+  background-color: #6379F4;
+  color: white;
 }
 
 @media screen and (max-width: 768px) {
@@ -117,14 +118,17 @@
   .input {
     width: 70%;
   }
+
   .btn {
     width: 70%;
     margin-bottom: 35%;
   }
+
   .tittle {
     display: flex;
     justify-content: center;
   }
+
   .desc {
     display: flex;
     justify-content: center;
@@ -139,16 +143,20 @@
   .input {
     width: 100%;
   }
-  .inputNumber > input {
+
+  .inputNumber>input {
     font-size: 10px;
   }
+
   .btn {
     width: 100%;
   }
+
   .tittle {
     display: flex;
     justify-content: center;
   }
+
   .desc {
     display: flex;
     justify-content: center;

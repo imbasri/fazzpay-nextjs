@@ -46,7 +46,7 @@
   padding-bottom: 5px;
 }
 
-.pin > .reactCodeInput {
+.pin>.reactCodeInput {
   display: flex !important;
   justify-content: center;
   width: 100%;
@@ -64,15 +64,16 @@
   width: 100%;
 }
 
-.reactCodeInput > input {
+.reactCodeInput>input {
   border: none;
 }
-.reactCodeInput > input:focus {
+
+.reactCodeInput>input:focus {
   outline: none;
 }
 
-.reactCodeInput > input::-webkit-outer-spin-button,
-.reactCodeInput > input::-webkit-inner-spin-button {
+.reactCodeInput>input::-webkit-outer-spin-button,
+.reactCodeInput>input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -107,6 +108,7 @@
   font-size: 18px;
   line-height: 25px;
   color: #88888f;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -122,17 +124,21 @@
   .input {
     width: 70%;
   }
+
   .btn {
     width: 70%;
     margin-bottom: 35%;
   }
+
   .inputPin {
     width: 70%;
   }
+
   .tittle {
     display: flex;
     justify-content: center;
   }
+
   .desc {
     display: flex;
     justify-content: center;
@@ -147,19 +153,23 @@
   .input {
     width: 100%;
   }
+
   .btn {
     width: 100%;
   }
+
   .tittle {
     display: flex;
     justify-content: center;
   }
+
   .desc {
     display: flex;
     justify-content: center;
     width: 100%;
     text-align: center;
   }
+
   .inputPin {
     width: 100%;
   }
