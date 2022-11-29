@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 
 function Transfer() {
    const router = useRouter();
-   const query = router.query;
+   // const query = router.query;
    const [data, setData] = useState([]);
    const [pagination, setPagination] = useState([]);
    const [search, setSearch] = useState("");

@@ -86,13 +86,19 @@ function PersonalInformation() {
                            </div>
                            <section>
                               <div
-                                 className={`${css.buttonedit} btn btn-outline-warning text-black fw-bold `}
+                                 className={`${css.buttonedit} btn btn-primary  text-white fw-bold `}
                                  onClick={() => {
                                     setEdit(!edit);
                                     console.log("click");
                                  }}
                               >
-                                 <span className="text-center">Edit</span>
+                                 {edit === true ? (
+                                    <span className="text-center">
+                                       <i className="bi bi-pencil"></i>
+                                    </span>
+                                 ) : (
+                                    <span className="text-center">X</span>
+                                 )}
                               </div>
                            </section>
                         </div>
