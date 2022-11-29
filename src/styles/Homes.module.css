@@ -651,4 +651,8 @@
   .see-all {
     font-size: 20px;
   }
+
+  .box {
+    position: fixed;
+  }
 }

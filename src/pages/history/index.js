@@ -11,22 +11,34 @@ import Drawers from "../../components/drawer/Drawer";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Layout from "../../components/Layout";
-
+import { useRouter, withRouter } from "next/router";
 function Index() {
+   const router = useRouter();
+
+   const query = router.query;
+
    const [data, setData] = useState([]);
    const [sort, setSort] = useState("");
-   const [totaldata, setTotaldata] = useState("");
+   const [page, setPage] = useState(1);
+   const [totalPage, setTotalPage] = useState("");
+   const [limit, setLimit] = useState(6);
+   const [pagination, setPagination] = useState([]);
 
    const sortHandler = (element) => {
       setSort(element.target.value);
+      router.push({
+         // pathname: `/history?page=${page}&limit=${limit}${element.target.value}`,
+         RouterParams: console.log(
+            `/history?page=${page}&limit=${limit}${element.target.value}`
+         ),
+      });
    };
 
    useEffect(() => {
-      console.log(sort);
       const getToken = Cookies.get("token");
       axios
          .get(
-            `https://fazzpay-rose.vercel.app/transaction/history?page=1&limit=10${sort}`,
+            `https://fazzpay-rose.vercel.app/transaction/history?page=${page}&limit=${limit}${sort}`,
             {
                headers: {
                   Authorization: `Bearer ${getToken}`,
@@ -34,8 +46,10 @@ function Index() {
             }
          )
          .then((res) => {
+            // console.log(res.data);
             setData(res.data.data);
-            setTotaldata(res.data.pagination.totalData);
+            setPagination(res.data);
+            setTotalPage(res.data.pagination.totalPage);
          })
          .catch((err) => console.log(err));
    }, [sort]);
@@ -46,6 +60,30 @@ function Index() {
             .toString()
             .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}`;
       }
+   };
+
+   // pagination
+   const getData = () => {
+      const getToken = Cookies.get("token");
+
+      axios
+         .get(
+            `https://fazzpay-rose.vercel.app/transaction/history?page=${page}&limit=${limit}&${sort}`,
+
+            {
+               headers: {
+                  Authorization: `Bearer ${getToken}`,
+               },
+            }
+         )
+         .then((res) => {
+            // console.log(res.data);
+            setData(res.data.data);
+            setPagination(res.data.pagination);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
    };
 
    return (
@@ -73,14 +111,14 @@ function Index() {
                               <option selected value="">
                                  -- Select Filter --
                               </option>
-                              <option value="&filter=WEEK">Weekly</option>
-                              <option value="&filter=month">Monthly</option>
-                              <option value="&filter=YEAR">Year</option>
+                              <option value="filter=WEEK">Weekly</option>
+                              <option value="filter=month">Monthly</option>
+                              <option value="filter=YEAR">Year</option>
                            </select>
                         </div>
                         {/* modal history */}
                         <div className={styles.history__modal}>
-                           {totaldata <= 0 ? (
+                           {pagination.totalPage <= 0 ? (
                               <h1 className="d-none">data not found</h1>
                            ) : (
                               data.map((user) => (
@@ -100,6 +138,56 @@ function Index() {
                            )}
                         </div>
                      </section>
+                     <div className="d-flex justify-content-center align-items-center pt-3">
+                        {page <= 1 ? (
+                           <button
+                              disabled
+                              className="btn btn-primary mx-2 fw-bold"
+                              onClick={() => {
+                                 setPage(page - 1);
+                                 getData();
+                              }}
+                           >
+                              prev
+                           </button>
+                        ) : (
+                           <button
+                              className="btn btn-primary mx-2 fw-bold"
+                              onClick={() => {
+                                 setPage(page - 1);
+                                 getData();
+                              }}
+                           >
+                              prev
+                           </button>
+                        )}
+
+                        <p>
+                           {data === [] ? setPage(0) : page} / {totalPage}
+                        </p>
+                        {page === pagination.totalPage ? (
+                           <button
+                              disabled
+                              className="btn btn-primary mx-2 fw-bold"
+                              onClick={() => {
+                                 setPage(page + 1);
+                                 getData();
+                              }}
+                           >
+                              next
+                           </button>
+                        ) : (
+                           <button
+                              className="btn btn-primary mx-2 fw-bold"
+                              onClick={() => {
+                                 setPage(page + 1);
+                                 getData();
+                              }}
+                           >
+                              next
+                           </button>
+                        )}
+                     </div>
                   </div>
                </div>
             </div>
@@ -110,4 +198,4 @@ function Index() {
    );
 }
 
-export default Index;
+export default withRouter(Index);

@@ -113,7 +113,7 @@ function Pin() {
 
                      <div className={css.pin}>
                         <ReactCodeInput
-                           type="number"
+                           type="password"
                            fields={6}
                            pattern="/^-?\d+\.?\d*$/"
                            onChange={valuePin}

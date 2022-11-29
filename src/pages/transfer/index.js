@@ -13,20 +13,32 @@ import CardProfileTransfer from "../../components/card_profile_transfer/ProfileT
 import Drawers from "../../components/drawer/Drawer";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 function Transfer() {
+   const router = useRouter();
+   const query = router.query;
    const [data, setData] = useState([]);
+   const [pagination, setPagination] = useState([]);
    const [search, setSearch] = useState("");
+   const [page, setPage] = useState(1);
+   const [limit, setLimit] = useState(10);
 
    const searchHandler = (e) => {
-      setSearch(e.target.value);
+      if (e.key === "Enter") {
+         // router.push({
+         //    pathname: `/transfer/?search=${e.target.value}`,
+         // });
+         // console.log("do validate");
+         setSearch(e.target.value);
+      }
    };
-
    useEffect(() => {
       const getToken = Cookies.get("token");
+
       axios
          .get(
-            `https://fazzpay-rose.vercel.app/user?page=1&limit=10&search=${search}`,
+            `https://fazzpay-rose.vercel.app/user?page=${page}&limit=${limit}&search=${search}`,
 
             {
                headers: {
@@ -35,14 +47,37 @@ function Transfer() {
             }
          )
          .then((res) => {
-            // console.log(res.data.data);
+            // console.log(res.data);
             setData(res.data.data);
+            setPagination(res.data.pagination);
          })
          .catch((err) => {
             console.log(err);
          });
    }, [search]);
 
+   const getData = () => {
+      const getToken = Cookies.get("token");
+
+      axios
+         .get(
+            `https://fazzpay-rose.vercel.app/user?page=${page}&limit=${limit}&search=${search}`,
+
+            {
+               headers: {
+                  Authorization: `Bearer ${getToken}`,
+               },
+            }
+         )
+         .then((res) => {
+            // console.log(res.data);
+            setData(res.data.data);
+            setPagination(res.data.pagination);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
    return (
       <>
          <Layout title="Transfer">
@@ -65,33 +100,77 @@ function Transfer() {
                               name=""
                               id=""
                               placeholder="Search receiver here"
-                              onChange={searchHandler}
+                              onKeyDown={searchHandler}
                            />
                         </div>
                         {/* profile */}
                         <div className={css.scroll_bar}>
                            <div className={css.scroll}>
-                              {data.map(
-                                 (user) => (
-                                    console.log(
-                                       `${process.env.CLOUDINARY_LINK}`
-                                    ),
-                                    (
-                                       <CardProfileTransfer
-                                          key={user.id}
-                                          idUser={user.id}
-                                          images={
-                                             user.image === null
-                                                ? `${process.env.CLOUDINARY_LINK}`
-                                                : `${process.env.CLOUD}${user.image}`
-                                          }
-                                          name={user.firstName}
-                                          noTelp={user.noTelp}
-                                       />
-                                    )
-                                 )
-                              )}
+                              {data.map((user) => (
+                                 <CardProfileTransfer
+                                    key={user.id}
+                                    idUser={user.id}
+                                    images={
+                                       user.image === null
+                                          ? `${process.env.CLOUDINARY_LINK}`
+                                          : `${process.env.CLOUD}${user.image}`
+                                    }
+                                    name={user.firstName}
+                                    noTelp={user.noTelp}
+                                 />
+                              ))}
                            </div>
+                        </div>
+                        <div className="d-flex justify-content-center align-items-center">
+                           {page <= 1 ? (
+                              <button
+                                 disabled
+                                 className="btn btn-primary mx-2 fw-bold"
+                                 onClick={() => {
+                                    setPage(page - 1);
+                                    getData();
+                                 }}
+                              >
+                                 prev
+                              </button>
+                           ) : (
+                              <button
+                                 className="btn btn-primary mx-2 fw-bold"
+                                 onClick={() => {
+                                    setPage(page - 1);
+                                    getData();
+                                 }}
+                              >
+                                 prev
+                              </button>
+                           )}
+
+                           <p>
+                              {data === [] ? setPage(0) : page} /{" "}
+                              {pagination.totalPage}
+                           </p>
+                           {page === pagination.totalPage ? (
+                              <button
+                                 disabled
+                                 className="btn btn-primary mx-2 fw-bold"
+                                 onClick={() => {
+                                    setPage(page + 1);
+                                    getData();
+                                 }}
+                              >
+                                 next
+                              </button>
+                           ) : (
+                              <button
+                                 className="btn btn-primary mx-2 fw-bold"
+                                 onClick={() => {
+                                    setPage(page + 1);
+                                    getData();
+                                 }}
+                              >
+                                 next
+                              </button>
+                           )}
                         </div>
                      </div>
                   </div>

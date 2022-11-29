@@ -92,7 +92,7 @@ function Sidebar({ page }) {
                setShow(false);
             }, 7000)
          )
-         .catch((err) => console.log(err));
+         .catch((err) => toast.error(err.response.data.msg));
    };
 
    if (page === "home")

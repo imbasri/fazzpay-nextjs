@@ -27,7 +27,7 @@ function TransferID() {
 
    const [changecolor, setChangecolor] = useState(true);
    const [data, setData] = useState({});
-   const [price, setPrice] = useState("");
+   const [amount, setAmount] = useState("");
    const [note, setNote] = useState("");
 
    useEffect(() => {
@@ -51,31 +51,37 @@ function TransferID() {
    }, []);
 
    const valuePrice = (e) => {
-      if (e.target.value.length === 0) setPrice("");
+      if (e.target.value.length === 0) setAmount("");
       if (/[0-9]{1,12}/g.test(e.target.value[e.target.value.length - 1]))
-         setPrice(e.target.value);
+         setAmount(e.target.value);
    };
 
    const valueDesc = (e) => (setChangecolor(false), setNote(e.target.value));
 
-   const costing = (price) => {
+   const costing = (amount) => {
       return (
          "IDR " +
-         parseFloat(price)
+         parseFloat(amount)
             .toFixed()
             .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
       );
    };
 
    const clickHandler = () => {
-      if (profile.balance < price) {
+      if (amount === "") {
+         return toast.error("input amount");
+      }
+      if (amount < 10000) {
+         return toast.error("minimum IDR.10.000");
+      }
+      if (profile.balance < amount) {
          return toast.error("overlimit");
       }
       return dispatch(
          authActions.transactionsThunk(
             {
                receiverId: router.query.iduser,
-               amount: price,
+               amount: amount,
                notes: note,
             },
             () => (
@@ -128,7 +134,7 @@ function TransferID() {
                            <div className={css.data_nominal}>
                               <input
                                  type="tel"
-                                 value={price}
+                                 value={amount}
                                  placeholder="0.00"
                                  onChange={valuePrice}
                               />
