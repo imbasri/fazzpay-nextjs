@@ -93,7 +93,9 @@ export default function Home() {
                   totally free to use by all users around the world.
                </div>
                <div className={`row justify-content-around ${styles.allBox}`}>
-                  <span className={`col-3 ${styles.box}`}>
+                  <span
+                     className={`col-12 col-sm-12 col-md-3 my-3 ${styles.box}`}
+                  >
                      <div className={styles.icon}>
                         <div className={styles.aroundIcon}>
                            <Image
@@ -112,7 +114,9 @@ export default function Home() {
                         whenever you want and we will respond it.
                      </div>
                   </span>
-                  <span className={`col-3 ${styles.box}`}>
+                  <span
+                     className={`col-12 col-sm-12 col-md-3 my-3 ${styles.box}`}
+                  >
                      <div className={styles.icon}>
                         <div className={styles.aroundIcon}>
                            <Image
@@ -131,7 +135,9 @@ export default function Home() {
                         will encrypt any data you submitted to us.
                      </div>
                   </span>
-                  <span className={`col-3 ${styles.box}`}>
+                  <span
+                     className={`col-12 col-sm-12 col-md-3 my-3 ${styles.box}`}
+                  >
                      <div className={styles.icon}>
                         <div className={styles.aroundIcon}>
                            <Image
@@ -162,8 +168,9 @@ export default function Home() {
                      around the globe.
                   </div>
                </span>
-               <span className={`col-6 ${styles.partners}`}>
+               <span className={`col-6 ${styles.partners} position-relative`}>
                   <Image
+                     className={styles.images}
                      src={partners}
                      alt="partners-icon"
                      width={600}
@@ -228,7 +235,9 @@ export default function Home() {
                   totally free to use by all users around the world.
                </div>
                <div className={`row ${styles.containerComment}`}>
-                  <span className={`col-3 ${styles.commentBox}`}>
+                  <span
+                     className={`col-12 col-sm-12 col-md-3 col-lg-3 ${styles.commentBox}`}
+                  >
                      <div className={`d-flex justify-content-center mt-5`}>
                         <Image
                            src={profile1}
@@ -249,7 +258,9 @@ export default function Home() {
                         app that I`ve ever use in my entire life”
                      </div>
                   </span>
-                  <span className={`col-3 ${styles.commentBox}`}>
+                  <span
+                     className={`col-12 col-sm-12 col-md-3 col-lg-3 ${styles.commentBox}`}
+                  >
                      <div className={`d-flex justify-content-center mt-5`}>
                         <Image
                            src={profile2}
@@ -270,7 +281,9 @@ export default function Home() {
                         easy to use and it`s 100% free app”
                      </div>
                   </span>
-                  <span className={`col-3 ${styles.commentBox}`}>
+                  <span
+                     className={`col-12 col-sm-12 col-md-3 col-lg-3 ${styles.commentBox}`}
+                  >
                      <div className={`d-flex justify-content-center mt-5`}>
                         <Image
                            src={profile3}

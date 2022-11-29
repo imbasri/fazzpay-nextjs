@@ -181,10 +181,10 @@
   padding-bottom: 10%;
   background-color: #fafcff;
   width: 101%;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .main-2-1 {
@@ -209,6 +209,10 @@ justify-content: space-between;
   line-height: 31px;
 }
 
+
+.images {
+  width: 100%;
+}
 
 .main-3 {
   padding-top: 5%;
@@ -396,73 +400,91 @@ justify-content: space-between;
 
 
 .containerComment {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
 
 @media screen and (max-width: 768px) {
-    .image{
-        display: none;
-    }
-    .main-2 {
-        flex-direction: column;
-    }
-    .main-2-1 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-    }
-    .tittleMain2{
-        display: flex;
-        justify-content: center;
-    }
-    .descMain2{
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        padding-bottom: 5%;
-    }
-    .phone2 {
-        display: none;
-    }
-    .main-3 {
-        justify-content: center;
-    }
-    .main3Tittle{
-        width: 100%;
-        text-align: center;
-    }
-    .whatUsers {
-        margin-left: 10%;
-        text-align: center;
-    }
-    .footDesc {
-        margin-right: 50%;
-        width: 50%;
-    }
-    .footerDown{
-        flex-direction: column;
-    }
-    .rightFoot {flex-direction: column;}
-    .containerComment{
-        justify-content: space-around;
-    }
-    .main-2-1{
-        padding-left: 0%;
-    }
-    .partners{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-    }
-    .containerBoxMain3 {
-        padding-left: 15%;
-    }
-    .try-btn {
-        padding-left: 20%;
-        padding-right: 20%;
-        margin-right: 0%;
-    }
+  .image {
+    display: none;
+  }
+
+  .main-2 {
+    flex-direction: column;
+  }
+
+  .main-2-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .tittleMain2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .descMain2 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 5%;
+  }
+
+  .phone2 {
+    display: none;
+  }
+
+  .main-3 {
+    justify-content: center;
+  }
+
+  .main3Tittle {
+    width: 100%;
+    text-align: center;
+  }
+
+  .whatUsers {
+    margin-left: 10%;
+    text-align: center;
+  }
+
+  .footDesc {
+    margin-right: 50%;
+    width: 50%;
+  }
+
+  .footerDown {
+    flex-direction: column;
+  }
+
+  .rightFoot {
+    flex-direction: column;
+  }
+
+  .containerComment {
+    justify-content: space-around;
+  }
+
+  .main-2-1 {
+    padding-left: 0%;
+  }
+
+  .partners {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .containerBoxMain3 {
+    padding-left: 15%;
+  }
+
+  .try-btn {
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-right: 0%;
+  }
 }

@@ -4,11 +4,11 @@
     bottom: 50%;
     width: 80px;
     height: 80px;
-    border-radius: 50%;
-    background-color: #6379F4;
+    background-color: salmon;
     text-align: right;
     font-size: 1.45rem;
     transition: all 0.3s;
+    color: black;
 }
 
 .floating_apps:hover {
