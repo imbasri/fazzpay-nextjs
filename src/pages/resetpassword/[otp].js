@@ -60,6 +60,13 @@ function Reset() {
             setInputpending(false),
             toast.error("Data cannot be empty")
          );
+      if (password !== confirm)
+         return (
+            setInput(false),
+            setInputpending(false),
+            toast.error("password must be same")
+         );
+
       axios
          .patch("https://fazzpay-rose.vercel.app/auth/reset-password", {
             keysChangePassword: parseInt(router.query.otp),

@@ -51,6 +51,7 @@ function PersonalInformation() {
             // console.log(res.data);
             toast.success(res.data.msg);
             dispatch(authActions.userThunk(getToken, getId));
+            setEdit(!edit);
          })
          .catch((err) => console.log(err));
    };

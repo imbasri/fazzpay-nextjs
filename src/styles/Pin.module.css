@@ -39,7 +39,7 @@
     width: 90%;
 }
 
-.pin > .reactCodeInput{
+.pin>.reactCodeInput {
     display: flex !important;
     justify-content: center;
     width: 100%;
@@ -56,12 +56,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
- 
+
 }
 
 .reactCodeInput>input {
     border: none;
 }
+
 .reactCodeInput>input:focus {
     outline: none;
 }
@@ -69,8 +70,8 @@
 
 .reactCodeInput>input::-webkit-outer-spin-button,
 .reactCodeInput>input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0 ;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 
@@ -155,7 +156,7 @@
         line-height: 35px;
         color: #6379F4;
         background-color: #e5e5e5;
-        background: rgba(76, 175, 79, 0.144);
+        /* background: rgba(76, 175, 79, 0.144); */
         padding-top: 100px;
         padding-bottom: 50px;
         text-align: center;
@@ -167,7 +168,7 @@
     }
 
     .title_bar_1_phone {
-        display:block;
+        display: block;
         font-family: 'Nunito Sans';
         font-style: normal;
         font-weight: 700;
@@ -178,9 +179,9 @@
         padding-top: 10px;
         margin-top: 60px;
     }
-    
+
     .title_bar_2_phone {
-        display:block;
+        display: block;
         font-family: 'Nunito Sans';
         font-style: normal;
         font-weight: 400;

@@ -49,25 +49,26 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);;
+    border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);
+    ;
     margin-top: 40px;
     padding-bottom: 10px;
 }
 
-.firstname > i {
+.firstname>i {
     font-size: 20px;
     color: #A9A9A9;
     text-align: center;
     padding-left: 5px;
 }
 
-.firstname > input {
+.firstname>input {
     width: 100%;
     margin-left: 20px;
     border: none;
 }
 
-.firstname > input:focus {
+.firstname>input:focus {
     outline: none;
 }
 
@@ -77,25 +78,26 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);;
+    border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);
+    ;
     margin-top: 40px;
     padding-bottom: 10px;
 }
 
-.lastname > i {
+.lastname>i {
     font-size: 20px;
     color: #A9A9A9;
     text-align: center;
     padding-left: 5px;
 }
 
-.lastname > input {
+.lastname>input {
     width: 100%;
     margin-left: 20px;
     border: none;
 }
 
-.lastname > input:focus {
+.lastname>input:focus {
     outline: none;
 }
 
@@ -111,20 +113,20 @@
     padding-bottom: 10px;
 }
 
-.email > i {
+.email>i {
     font-size: 20px;
     color: #A9A9A9;
     text-align: center;
     padding-left: 5px;
 }
 
-.email > input {
+.email>input {
     width: 100%;
     margin-left: 20px;
     border: none;
 }
 
-.email > input:focus {
+.email>input:focus {
     outline: none;
 }
 
@@ -135,26 +137,27 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);;
+    border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);
+    ;
     margin-top: 40px;
     padding-bottom: 10px;
 }
 
 
-.password > i {
+.password>i {
     font-size: 20px;
     color: #A9A9A9;
     text-align: center;
     padding-left: 5px;
 }
 
-.password > input {
+.password>input {
     width: 100%;
     margin-left: 20px;
     border: none;
 }
 
-.password > input:focus {
+.password>input:focus {
     outline: none;
 }
 
@@ -247,7 +250,7 @@
         line-height: 35px;
         color: #6379F4;
         background-color: #e5e5e5;
-        background: rgba(76, 175, 79, 0.144);
+        /* background: rgba(76, 175, 79, 0.144); */
         padding-top: 100px;
         padding-bottom: 50px;
         text-align: center;
@@ -263,8 +266,9 @@
         display: flex;
         flex-direction: column;
     }
+
     .title_bar_1_phone {
-        display:block;
+        display: block;
         font-family: 'Nunito Sans';
         font-style: normal;
         font-weight: 700;
@@ -274,9 +278,9 @@
         text-align: center;
         margin-top: 50px;
     }
-    
+
     .title_bar_2_phone {
-        display:block;
+        display: block;
         font-family: 'Nunito Sans';
         font-style: normal;
         font-weight: 400;
@@ -290,6 +294,7 @@
     .content_right {
         width: 100%;
     }
+
     .content_form {
         padding-right: 50px;
         width: 100%;
@@ -302,6 +307,7 @@
     .title_bar_2 {
         display: none;
     }
+
     .login {
         margin-top: 60px;
     }
