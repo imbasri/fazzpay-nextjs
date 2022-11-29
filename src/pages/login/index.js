@@ -151,8 +151,13 @@ function Login() {
                         <i className={icon} onClick={handleToggle}></i>
                      </div>
                      <div className={css.forgot}>
-                        <Link href="/resetpassword">
-                           <p>Forgot Password?</p>
+                        <Link
+                           className="text-decoration-none"
+                           href="/resetpassword"
+                        >
+                           <p className="text-decoration-none">
+                              Forgot Password?
+                           </p>
                         </Link>
                      </div>
                      <button className={css.login} onClick={postLogin}>
