@@ -86,10 +86,10 @@ You may also see any lint errors in the console.
 
 <table border="2">
     <div align="center">
-        <img width="500" height="500" src="../fazzpay/src/assets/readme/Home.png">
-        <img width="500" height="500" src="../fazzpay/src/assets/readme/Dashboard.png">
-        <img width="500" height="500" src="../fazzpay/src/assets/readme/Profile.png">
-        <img width="500" height="500" src="../fazzpay/src/assets/readme/Topup.png">
+        <img width="500" height="500" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Home.png?raw=true">
+        <img width="500" height="500" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Dashboard.png?raw=true">
+        <img width="500" height="500" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Profile.png?raw=true">
+        <img width="500" height="500" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Topup.png?raw=true">
     </div>
 </table>
 
