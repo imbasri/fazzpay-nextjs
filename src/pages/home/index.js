@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 //import css
-import styles from "../../styles/Rumah.module.css";
+import styles from "../../styles/Homes.module.css";
 
 //import components
 import Header from "../../components/Header/Header";

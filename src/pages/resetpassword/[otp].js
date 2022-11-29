@@ -66,7 +66,12 @@ function Reset() {
             newPassword: password,
             confirmPassword: confirm,
          })
-         .then((res) => toast.success(res.data.msg))
+         .then(
+            (res) => toast.success(res.data.msg),
+            setTimeout(() => {
+               return router.replace("/login");
+            }, 2000)
+         )
          .catch(
             (err) => (
                setInput(false),

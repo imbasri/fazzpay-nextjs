@@ -6,6 +6,7 @@ import css from "../../styles/Resetpassword.module.css";
 // import components
 import Dashboard from "../../components/dashboard/Dashboard";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import axios from "axios";
 import Layout from "../../components/Layout";
 // import toastify
@@ -16,7 +17,7 @@ function Resetpassword() {
    const [email, setEmail] = useState("");
    const [input, setInput] = useState(true);
    const [inputpending, setInputpending] = useState(true);
-
+   const router = useRouter();
    const changeHandler = (e) => (
       setInputpending(false), setInput(true), setEmail(e.target.value)
    );
