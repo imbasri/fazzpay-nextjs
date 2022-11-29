@@ -97,6 +97,5 @@ You may also see any lint errors in the console.
 
 -  Frontend Deploy [`here`](https://bujankcoffeereact.vercel.app/)
 -  Backend API Deploy [`here`](https://bujankcoffeeapi.vercel.app/)
--  Backend API Documentation [`here`](https://documenter.getpostman.com/view/23706970/2s847ESaNS)
 
 <p align="center"><sub><b>&copy;2022❤️BujankCoffee☕</b></sub></p>
