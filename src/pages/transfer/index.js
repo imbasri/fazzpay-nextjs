@@ -50,6 +50,7 @@ function Transfer() {
             // console.log(res.data);
             setData(res.data.data);
             setPagination(res.data.pagination);
+            setPage(1);
          })
          .catch((err) => {
             console.log(err);

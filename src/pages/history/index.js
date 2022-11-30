@@ -52,7 +52,7 @@ function Index() {
             setTotalPage(res.data.pagination.totalPage);
          })
          .catch((err) => console.log(err));
-   }, [sort]);
+   }, [page]);
 
    const rupiah = (number) => {
       if (number) {
@@ -80,6 +80,7 @@ function Index() {
             // console.log(res.data);
             setData(res.data.data);
             setPagination(res.data.pagination);
+            setPage(res.data.data.pagination.page);
          })
          .catch((err) => {
             console.log(err);
@@ -165,7 +166,7 @@ function Index() {
                         <p>
                            {data === [] ? setPage(0) : page} / {totalPage}
                         </p>
-                        {page === pagination.totalPage ? (
+                        {page === totalPage ? (
                            <button
                               disabled
                               className="btn btn-primary mx-2 fw-bold"
