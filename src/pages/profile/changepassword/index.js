@@ -20,9 +20,9 @@ function Changepassword() {
    const [icon_, setIcon_] = useState("fa-solid fa-eye-slash");
    const [type__, setType__] = useState("password");
    const [icon__, setIcon__] = useState("fa-solid fa-eye-slash");
-   const [password, setPassword] = useState();
-   const [confirm, setConfirm] = useState();
-   const [repeat, setRepeat] = useState();
+   const [password, setPassword] = useState("");
+   const [confirm, setConfirm] = useState("");
+   const [repeat, setRepeat] = useState("");
    const [input, setInput] = useState(true);
    const [inputpending, setInputpending] = useState(true);
    const [input_, setInput_] = useState(true);
@@ -89,6 +89,9 @@ function Changepassword() {
    const id = Cookies.get("id");
    const token = Cookies.get("token");
    const clickHandler = () => {
+      if ((password === "", confirm === "", repeat === "")) {
+         return toast.error("please input all fields");
+      }
       axios
          .patch(
             `https://fazzpay-rose.vercel.app/user/password/${id}`,

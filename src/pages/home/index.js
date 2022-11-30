@@ -25,6 +25,8 @@ import icon_plus_blue from "../../assets/dashboard/icon_plus_blue.png";
 import icon_arrow_green from "../../assets/dashboard/icon_arrow_green.png";
 import icon_arrow_red from "../../assets/dashboard/icon_arrow_red.png";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+
 import authActions from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
@@ -46,7 +48,8 @@ function Index() {
    };
 
    const [show, setShow] = useState(false);
-
+   const handleClosemodal = () => setShowmodal(false);
+   const handleShowmodal = () => setShowmodal(true);
    const handleShow = () => {
       console.log(show), setShow(false);
    };
@@ -94,20 +97,27 @@ function Index() {
          .catch((err) => console.log(err));
    }, []);
    // topup
-   const [price, setPrice] = useState("");
+   const [amount, setAmount] = useState("");
    const [link, setLink] = useState("");
    const valuePrice = (e) => {
-      if (e.target.value.length === 0) setPrice("");
+      if (e.target.value.length === 0) setAmount("");
       if (/[0-9]{1,12}/g.test(e.target.value[e.target.value.length - 1]))
-         setPrice(e.target.value);
+         setAmount(e.target.value);
    };
    const handleTopup = () => {
       const getToken = Cookies.get("token");
+      if (amount === "") {
+         return toast.error("Please input Topup");
+      }
+      if (amount < 10000) {
+         return toast.error("Top up minumum IDR. 10.000");
+      }
+
       axios
          .post(
             `https://fazzpay-rose.vercel.app/transaction/top-up`,
             {
-               amount: price,
+               amount: amount,
             },
             {
                headers: {
@@ -121,7 +131,7 @@ function Index() {
                setShow(false);
             }, 7000)
          )
-         .catch((err) => console.log(err));
+         .catch((err) => toast.error(err.response.data.msg));
    };
 
    const rupiah = (number) => {
@@ -213,7 +223,7 @@ function Index() {
                                     <input
                                        type="number"
                                        className={styles.arrow}
-                                       value={price}
+                                       value={amount}
                                        onChange={valuePrice}
                                     />
                                  </span>
@@ -340,6 +350,15 @@ function Index() {
             </main>
             <Footer />
             <Drawers pages="home child" />
+            <ToastContainer
+               position="top-center"
+               autoClose={2000}
+               hideProgressBar={false}
+               closeOnClick={true}
+               pauseOnHover={true}
+               draggable={true}
+               theme="light"
+            />
          </Layout>
       </>
    );

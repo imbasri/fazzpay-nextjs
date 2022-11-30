@@ -63,22 +63,28 @@ function Sidebar({ page }) {
       }, 2000);
    };
    // Topup
-   const [price, setPrice] = useState("");
+   const [amount, setAmount] = useState("");
    const [link, setLink] = useState("");
 
    const valuePrice = (e) => {
-      if (e.target.value.length === 0) setPrice("");
+      if (e.target.value.length === 0) setAmount("");
       if (/[0-9]{1,12}/g.test(e.target.value[e.target.value.length - 1]))
-         setPrice(e.target.value);
+         setAmount(e.target.value);
    };
 
    const handleTopup = () => {
       const getToken = Cookies.get("token");
+      if (amount === "") {
+         return toast.error("Please input Topup");
+      }
+      if (amount < 10000) {
+         return toast.error("Top up minumum IDR. 10.000");
+      }
       axios
          .post(
             `https://fazzpay-rose.vercel.app/transaction/top-up`,
             {
-               amount: price,
+               amount: amount,
             },
             {
                headers: {
@@ -157,7 +163,7 @@ function Sidebar({ page }) {
                         <input
                            type="tel"
                            className={styles.arrow}
-                           value={price}
+                           value={amount}
                            onChange={valuePrice}
                         />
                      </span>
@@ -281,7 +287,7 @@ function Sidebar({ page }) {
                         <input
                            type="tel"
                            className={styles.arrow}
-                           value={price}
+                           value={amount}
                            onChange={valuePrice}
                         />
                      </span>
@@ -403,7 +409,7 @@ function Sidebar({ page }) {
                         <input
                            type="tel"
                            className={styles.arrow}
-                           value={price}
+                           value={amount}
                            onChange={valuePrice}
                         />
                      </span>
@@ -527,7 +533,7 @@ function Sidebar({ page }) {
                         <input
                            type="tel"
                            className={styles.arrow}
-                           value={price}
+                           value={amount}
                            onChange={valuePrice}
                         />
                      </span>
@@ -649,7 +655,7 @@ function Sidebar({ page }) {
                         <input
                            type="tel"
                            className={styles.arrow}
-                           value={price}
+                           value={amount}
                            onChange={valuePrice}
                         />
                      </span>
@@ -771,7 +777,7 @@ function Sidebar({ page }) {
                         <input
                            type="tel"
                            className={styles.arrow}
-                           value={price}
+                           value={amount}
                            onChange={valuePrice}
                         />
                      </span>
