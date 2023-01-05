@@ -12,33 +12,35 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import Layout from "../../components/Layout";
 import { useRouter, withRouter } from "next/router";
+import Spinner from "react-bootstrap/Spinner";
+
 function Index() {
    const router = useRouter();
 
    const query = router.query;
 
    const [data, setData] = useState([]);
-   const [sort, setSort] = useState("");
+   const [sort, setSort] = useState("filter=WEEK");
    const [page, setPage] = useState(1);
    const [totalPage, setTotalPage] = useState("");
    const [limit, setLimit] = useState(6);
    const [pagination, setPagination] = useState([]);
-
+   const [loading, setLoading] = useState(false);
    const sortHandler = (element) => {
       setSort(element.target.value);
-      router.push({
-         // pathname: `/history?page=${page}&limit=${limit}${element.target.value}`,
-         RouterParams: console.log(
-            `/history?page=${page}&limit=${limit}${element.target.value}`
-         ),
-      });
+      setPage(1);
+      router.replace(
+         `/history?page=${page}&limit=${limit}&${element.target.value}`
+      );
    };
 
    useEffect(() => {
+      setLoading(true);
       const getToken = Cookies.get("token");
+      router.replace(`/history?page=${page}&limit=${limit}&${sort}`);
       axios
          .get(
-            `https://fazzpay-rose.vercel.app/transaction/history?page=${page}&limit=${limit}${sort}`,
+            `https://fazzpay-rose.vercel.app/transaction/history?page=${page}&limit=${limit}&${sort}`,
             {
                headers: {
                   Authorization: `Bearer ${getToken}`,
@@ -50,9 +52,13 @@ function Index() {
             setData(res.data.data);
             setPagination(res.data);
             setTotalPage(res.data.pagination.totalPage);
+            setLoading(false);
          })
-         .catch((err) => console.log(err));
-   }, [page]);
+         .catch((err) => {
+            console.log(err);
+            setLoading(false);
+         });
+   }, [page, limit, sort]);
 
    const rupiah = (number) => {
       if (number) {
@@ -109,17 +115,20 @@ function Index() {
                               aria-label="-- Select Filter --"
                               onChange={sortHandler}
                            >
-                              <option selected value="">
-                                 -- Select Filter --
+                              <option selected value="filter=WEEK">
+                                 Weekly
                               </option>
-                              <option value="filter=WEEK">Weekly</option>
-                              <option value="filter=month">Monthly</option>
+                              <option value="filter=MONTH">Monthly</option>
                               <option value="filter=YEAR">Year</option>
                            </select>
                         </div>
                         {/* modal history */}
                         <div className={styles.history__modal}>
-                           {pagination.totalPage <= 0 ? (
+                           {loading ? (
+                              <div className="my-5 justify-content-center align-items-center py-5 d-flex">
+                                 <Spinner animation="grow" />
+                              </div>
+                           ) : pagination.totalPage <= 0 ? (
                               <h1 className="d-none">data not found</h1>
                            ) : (
                               data.map((user) => (

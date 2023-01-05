@@ -8,6 +8,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/sidebar/Sidebar";
 import CardTransaction from "../../components/CardTransaction/index";
+import Spinner from "react-bootstrap/Spinner";
 
 //import image
 import Image from "next/image";
@@ -34,12 +35,34 @@ import Drawers from "../../components/drawer/Drawer";
 import axios from "axios";
 import Link from "next/link";
 import Layout from "../../components/Layout";
+
+// charts
+import {
+   Chart as ChartJS,
+   CategoryScale,
+   LinearScale,
+   BarElement,
+   Title,
+   Tooltip,
+   Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+ChartJS.register(
+   CategoryScale,
+   LinearScale,
+   BarElement,
+   Title,
+   Tooltip,
+   Legend
+);
+
 function Index() {
    const router = useRouter();
    const dispatch = useDispatch();
    const profile = useSelector((state) => state.auth.profile);
    const [data, setData] = useState([]);
-
+   const [loading, setLoading] = useState(false);
    const seeAllHandler = () => {
       router.push("/history");
    };
@@ -67,6 +90,7 @@ function Index() {
    }, []);
 
    useEffect(() => {
+      setLoading(true);
       const getToken = Cookies.get("token");
       axios
          .get(
@@ -77,14 +101,27 @@ function Index() {
                },
             }
          )
-         .then((res) => setData(res.data.data))
-         .catch((err) => console.log(err));
+         .then((res) => {
+            setData(res.data.data);
+            setLoading(false);
+         })
+         .catch((err) => {
+            console.log(err);
+            setLoading(false);
+         });
    }, []);
 
    // update income expense
    const [chart, setChart] = useState([]);
+   const [listExpense, setListExpense] = useState([]);
+   const [listIncome, setListIncome] = useState([]);
 
+   // console.log(listExpense);
+   // console.log(listIncome);
+   // console.log(chart);
    useEffect(() => {
+      setLoading(true);
+
       const getToken = Cookies.get("token");
       const getId = Cookies.get(`id`);
       axios
@@ -93,8 +130,16 @@ function Index() {
                Authorization: `Bearer ${getToken}`,
             },
          })
-         .then((res) => setChart(res.data.data))
-         .catch((err) => console.log(err));
+         .then((res) => {
+            setChart(res.data.data);
+            setListExpense(res.data.data.listExpense);
+            setListIncome(res.data.data.listIncome);
+            setLoading(false);
+         })
+         .catch((err) => {
+            console.log(err);
+            setLoading(false);
+         });
    }, []);
    // topup
    const [amount, setAmount] = useState("");
@@ -142,6 +187,44 @@ function Index() {
       }
    };
 
+   // grafik
+   const labels = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+   ];
+   const options = {
+      responsive: true,
+      plugins: {
+         legend: {
+            position: "top",
+         },
+         title: {
+            display: true,
+            text: "Chart Income / Expense",
+         },
+      },
+   };
+   const dataGrafik = {
+      labels,
+      datasets: [
+         {
+            label: "Income",
+            data: listIncome.map((e) => e.total),
+            backgroundColor: "rgba(255, 99, 132, 0.5)",
+         },
+         {
+            label: "Expense",
+            data: listExpense.map((e) => e.total),
+            backgroundColor: "rgba(53, 162, 235, 0.5)",
+         },
+      ],
+   };
+
    return (
       <>
          <Layout title="Home">
@@ -187,7 +270,7 @@ function Index() {
                                  onClick={handleclickshow}
                               >
                                  <Image
-                                    src={icon_arrow_blue}
+                                    src={icon_plus_blue}
                                     alt="icon_arrow_blue"
                                  />
                                  <p
@@ -224,6 +307,7 @@ function Index() {
                                  <span className={styles.input_}>
                                     <input
                                        type="number"
+                                       placeholder="IDR.0"
                                        className={styles.arrow}
                                        value={amount}
                                        onChange={valuePrice}
@@ -271,51 +355,13 @@ function Index() {
                                     </p>
                                  </div>
                               </div>
-                              <div
-                                 className={`${styles["content-grafik"]} container`}
-                              >
-                                 <div className={styles["grap-one"]}>
-                                    <div
-                                       className={styles["border-grap"]}
-                                    ></div>
-                                    <p className={styles["day"]}>Sat</p>
-                                 </div>
-                                 <div className={styles["grap-one"]}>
-                                    <div
-                                       className={styles["border-grap-sec"]}
-                                    ></div>
-                                    <p className={styles["day-sun"]}>Sun</p>
-                                 </div>
-                                 <div className={styles["grap-one"]}>
-                                    <div
-                                       className={styles["border-grap-tree"]}
-                                    ></div>
-                                    <p className={styles["day-mon"]}>Mon</p>
-                                 </div>
-                                 <div className={styles["grap-one"]}>
-                                    <div
-                                       className={styles["border-grap-four"]}
-                                    ></div>
-                                    <p className={styles["day-tue"]}>Tue</p>
-                                 </div>
-                                 <div className={styles["grap-one"]}>
-                                    <div
-                                       className={styles["border-grap-five"]}
-                                    ></div>
-                                    <p className={styles["day-wed"]}>Wed</p>
-                                 </div>
-                                 <div className={styles["grap-one"]}>
-                                    <div
-                                       className={styles["border-grap-six"]}
-                                    ></div>
-                                    <p className={styles["day-thu"]}>Thu</p>
-                                 </div>
-                                 <div className={styles["grap-one"]}>
-                                    <div
-                                       className={styles["border-grap-seven"]}
-                                    ></div>
-                                    <p className={styles["day-fri"]}>Fri</p>
-                                 </div>
+                              {/* content grafik */}
+                              <div className="px-3 w-100 h-auto">
+                                 <Bar
+                                    className="w-100 h-100"
+                                    options={options}
+                                    data={dataGrafik}
+                                 />
                               </div>
                            </div>
                            <div className={styles["content-grap-right"]}>
@@ -330,20 +376,26 @@ function Index() {
                                     See all
                                  </p>
                               </div>
-                              {data.map((user) => (
-                                 <CardTransaction
-                                    key={user.id}
-                                    balance={rupiah(user.amount)}
-                                    fullName={user.fullName}
-                                    image={
-                                       user.image === null
-                                          ? `${process.env.CLOUDINARY_LINK}`
-                                          : `${process.env.CLOUD}${user.image}`
-                                    }
-                                    type={user.type}
-                                    status={user.status}
-                                 />
-                              ))}
+                              {loading ? (
+                                 <div className="my-5 justify-content-center align-items-center py-5 d-flex">
+                                    <Spinner animation="grow" />
+                                 </div>
+                              ) : (
+                                 data.map((user) => (
+                                    <CardTransaction
+                                       key={user.id}
+                                       balance={rupiah(user.amount)}
+                                       fullName={user.fullName}
+                                       image={
+                                          user.image === null
+                                             ? `${process.env.CLOUDINARY_LINK}`
+                                             : `${process.env.CLOUD}${user.image}`
+                                       }
+                                       type={user.type}
+                                       status={user.status}
+                                    />
+                                 ))
+                              )}
                            </div>
                         </div>
                      </div>

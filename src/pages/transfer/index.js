@@ -14,7 +14,7 @@ import Drawers from "../../components/drawer/Drawer";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-
+import Spinner from "react-bootstrap/Spinner";
 function Transfer() {
    const router = useRouter();
    // const query = router.query;
@@ -23,6 +23,7 @@ function Transfer() {
    const [search, setSearch] = useState("");
    const [page, setPage] = useState(1);
    const [limit, setLimit] = useState(10);
+   const [loading, setLoading] = useState(false);
    console.log(router);
    const searchHandler = (e) => {
       // if (e) {
@@ -45,7 +46,12 @@ function Transfer() {
       }
    };
    useEffect(() => {
+      setLoading(true);
       const getToken = Cookies.get("token");
+      if (search === "") {
+         router.replace(`/transfer/?page=${page}&limit=${limit}`);
+      }
+      router.replace(`/transfer/?page=${page}&limit=${limit}&search=${search}`);
 
       axios
          .get(
@@ -61,17 +67,24 @@ function Transfer() {
             // console.log(res.data);
             setData(res.data.data);
             setPagination(res.data.pagination);
+            setLoading(false);
+
             // setPage(1);
          })
          .catch((err) => {
             console.log(err);
+            setLoading(false);
          });
    }, [search, page]);
 
    const getData = () => {
+      setLoading(true);
+
       const getToken = Cookies.get("token");
       if (search === "") {
-         router.replace(`/transfer/?page=${page}&limit=${limit}`);
+         router.replace(
+            `/transfer/?page=${page}&limit=${limit}&search=${search}`
+         );
       }
       router.replace(`/transfer/?page=${page}&limit=${limit}&search=${search}`);
       axios
@@ -85,13 +98,15 @@ function Transfer() {
             }
          )
          .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
 
             setData(res.data.data);
             setPagination(res.data.pagination);
+            setLoading(false);
          })
          .catch((err) => {
             console.log(err);
+            setLoading(false);
          });
    };
    return (
@@ -114,7 +129,6 @@ function Transfer() {
                            <input
                               type="text"
                               name=""
-                              id=""
                               placeholder="Search receiver here"
                               onChange={searchHandler}
                            />
@@ -122,19 +136,25 @@ function Transfer() {
                         {/* profile */}
                         <div className={css.scroll_bar}>
                            <div className={css.scroll}>
-                              {data.map((user) => (
-                                 <CardProfileTransfer
-                                    key={user.id}
-                                    idUser={user.id}
-                                    images={
-                                       user.image === null
-                                          ? `${process.env.CLOUDINARY_LINK}`
-                                          : `${process.env.CLOUD}${user.image}`
-                                    }
-                                    name={user.firstName}
-                                    noTelp={user.noTelp}
-                                 />
-                              ))}
+                              {loading ? (
+                                 <div className="my-5 justify-content-center align-items-center py-5 d-flex">
+                                    <Spinner animation="grow" />
+                                 </div>
+                              ) : (
+                                 data.map((user) => (
+                                    <CardProfileTransfer
+                                       key={user.id}
+                                       idUser={user.id}
+                                       images={
+                                          user.image === null
+                                             ? `${process.env.CLOUDINARY_LINK}`
+                                             : `${process.env.CLOUD}${user.image}`
+                                       }
+                                       name={user.firstName}
+                                       noTelp={user.noTelp}
+                                    />
+                                 ))
+                              )}
                            </div>
                         </div>
                         <div className="d-flex justify-content-center align-items-center">

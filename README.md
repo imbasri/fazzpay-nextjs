@@ -86,10 +86,10 @@ You may also see any lint errors in the console.
 
 <table border="2">
     <div align="center">
-        <img width="500" height="500" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Home.png?raw=true">
-        <img width="500" height="500" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Dashboard.png?raw=true">
-        <img width="500" height="500" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Profile.png?raw=true">
-        <img width="500" height="500" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Topup.png?raw=true">
+        <img width="300" height="300" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Home.png?raw=true">
+        <img width="300" height="300" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Dashboard.png?raw=true">
+        <img width="300" height="300" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Profile.png?raw=true">
+        <img width="300" height="300" src="https://github.com/imbasri-dev/fazzpay-nextjs/blob/master/src/assets/Readme/Topup.png?raw=true">
     </div>
 </table>
 
@@ -98,4 +98,4 @@ You may also see any lint errors in the console.
 -  Frontend Deploy [`here`](https://bujankcoffeereact.vercel.app/)
 -  Backend API Deploy [`here`](https://bujankcoffeeapi.vercel.app/)
 
-<p align="center"><sub><b>&copy;2022❤️BujankCoffee☕</b></sub></p>
+<p align="center"><sub><b>&copy;2022❤️Fazzpay☕</b></sub></p>
