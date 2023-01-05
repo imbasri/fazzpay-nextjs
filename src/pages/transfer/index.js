@@ -23,14 +23,25 @@ function Transfer() {
    const [search, setSearch] = useState("");
    const [page, setPage] = useState(1);
    const [limit, setLimit] = useState(10);
-
+   console.log(router);
    const searchHandler = (e) => {
-      if (e.key === "Enter") {
-         // router.push({
-         //    pathname: `/transfer/?search=${e.target.value}`,
-         // });
-         // console.log("do validate");
+      // if (e) {
+      //    // router.push({
+      //    //    pathname: `/transfer/?search=${e.target.value}`,
+      //    // });
+      //    // console.log("do validate");
+      // }
+      console.log(search);
+      setTimeout(() => {
          setSearch(e.target.value);
+      }, 1000);
+      setPage(1);
+      console.log(search);
+
+      if (e.target.value !== null) {
+         router.replace(
+            `/transfer/?page=${page}&limit=${limit}&search=${e.target.value}`
+         );
       }
    };
    useEffect(() => {
@@ -50,16 +61,19 @@ function Transfer() {
             // console.log(res.data);
             setData(res.data.data);
             setPagination(res.data.pagination);
-            setPage(1);
+            // setPage(1);
          })
          .catch((err) => {
             console.log(err);
          });
-   }, [search]);
+   }, [search, page]);
 
    const getData = () => {
       const getToken = Cookies.get("token");
-
+      if (search === "") {
+         router.replace(`/transfer/?page=${page}&limit=${limit}`);
+      }
+      router.replace(`/transfer/?page=${page}&limit=${limit}&search=${search}`);
       axios
          .get(
             `https://fazzpay-rose.vercel.app/user?page=${page}&limit=${limit}&search=${search}`,
@@ -71,7 +85,8 @@ function Transfer() {
             }
          )
          .then((res) => {
-            // console.log(res.data);
+            console.log(res.data);
+
             setData(res.data.data);
             setPagination(res.data.pagination);
          })
@@ -101,7 +116,7 @@ function Transfer() {
                               name=""
                               id=""
                               placeholder="Search receiver here"
-                              onKeyDown={searchHandler}
+                              onChange={searchHandler}
                            />
                         </div>
                         {/* profile */}

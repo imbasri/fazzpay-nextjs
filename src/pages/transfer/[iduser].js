@@ -135,7 +135,7 @@ function TransferID() {
                               <input
                                  type="tel"
                                  value={amount}
-                                 placeholder="0.00"
+                                 placeholder="Rp.0"
                                  onChange={valuePrice}
                               />
                            </div>

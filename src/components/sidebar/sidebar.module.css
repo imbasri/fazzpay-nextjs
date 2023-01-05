@@ -166,7 +166,6 @@
   font-size: 2rem;
 }
 
-
 .btn_submit {
   background: #6379f4;
   box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
@@ -182,22 +181,9 @@
   color: #ffffff;
 }
 
-
-
-
-
-
-
 @media only screen and (max-width: 768px) {
   .content_box {
     position: absolute;
     left: 150px;
-  }
-}
-
-
-@media only screen and (max-width: 428px) {
-  .content-left {
-    display: none;
   }
 }

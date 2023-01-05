@@ -148,7 +148,9 @@ function Index() {
             <Header />
             <main>
                <section className={styles["section-one"]}>
-                  <div className={`${styles["content-all"]} container`}>
+                  <div
+                     className={`${styles["content-all"]} px-3 justify-content-center`}
+                  >
                      <section className="col-12 col-sm-12 col-md-3 d-none d-sm-none d-lg-block ">
                         <Sidebar page="home" />
                      </section>

@@ -12,7 +12,7 @@ function Drawer({ pages }) {
    return (
       <>
          <button
-            className={`${styles.floating_apps} d-none d-sm-none d-md-block d-lg-none`}
+            className={`${styles.floating_apps}  d-block d-lg-none`}
             onClick={toggleDrawer}
          >
             <span className="me-2">
@@ -23,12 +23,11 @@ function Drawer({ pages }) {
             open={isOpen}
             onClose={toggleDrawer}
             direction="left"
-            className=""
-            overlayColor={"salmon"}
+            overlayColor={"#06406f"}
             size={250}
             enableOverlay={true}
          >
-            <div className="h-100 w-100 ">
+            <div className="h-100 w-100">
                <Sidebar page={pages} />
             </div>
          </Drawers>
