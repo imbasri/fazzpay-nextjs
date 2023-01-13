@@ -15,7 +15,6 @@
 -  [How to Run App](#How-to-Run-the-Application)
 -  [Usage](#Development)
 -  [Screenshots](#screenshots)
--  [Related Project](#related-project)
 
 ## Introduction
 
@@ -93,9 +92,5 @@ You may also see any lint errors in the console.
     </div>
 </table>
 
-## Related Project
-
--  Tickitz (NextJs) [`here`](https://lepisa-fe.vercel.app/)
--  Backend FazzPay [`here`](https://documenter.getpostman.com/view/23706970/2s8ZDR8RFJ)
 
 <p align="center"><sub><b>&copy;2022❤️Fazzpay☕</b></sub></p>
