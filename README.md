@@ -92,5 +92,4 @@ You may also see any lint errors in the console.
     </div>
 </table>
 
-
 <p align="center"><sub><b>&copy;2022❤️Fazzpay☕</b></sub></p>
